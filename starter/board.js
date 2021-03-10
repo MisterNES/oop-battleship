@@ -19,15 +19,23 @@ class Board {
         grid[i].push(null);
       }
     }
-    for (let k = 0; k < this.numShips; k++){
 
+    // let uiGrid = grid
+
+    for (let k = 0; k < this.numShips; k++){
+      let randomCol = Math.floor(Math.random() * Math.floor(this.numCols));
+      let randomRow = Math.floor(Math.random() * Math.floor(this.numRows));
+
+      grid[randomRow][randomCol] = 's'
     }
+    return grid
   }
 
   display() {
     // TODO: Print the game board with marks on any spaces that have been fired
     // upon. Be sure not to display the unhit ships to the user! Hint: you might
     // be able to use console.table()
+    console.table(uiGrid);
   }
 
   count() {
@@ -49,5 +57,10 @@ class Board {
     // space or a damaged ship.
   }
 }
+
+let testBoard = new Board(3,4,2);
+
+// console.log(testBoard.populateGrid().uiGrid)
+
 
 module.exports = Board;
