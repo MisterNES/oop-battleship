@@ -60,7 +60,7 @@ class Board {
 
     for (let i = 0; i < this.numRows; i++) {
       for (let j = 0; j < this.numCols; j++) {
-        if (grid[i][j] === 's') {
+        if (this.grid[i][j] === 's') {
           remShips++;
         }
       }
@@ -88,20 +88,29 @@ class Board {
 
   isGameOver() {
     // TODO: Return true if the game is over (when all ships are hit).
+    if (this.count() === 0){
+      return true;
+    }
+    return false;
 
-    
   }
 
-  attack() {
+  attack(array) {
     // TODO: Take in an attack position in the form of an array, [row, col], as
     // a parameter. Update this.grid depending on if the position is an empty
     // space or a damaged ship.
+    let [row, col] = array;
+
+    if (this.isValidMove()){
+      if(this.grid[row][col] === 's'){
+        this.grid[row][col] = 'h';
+      }
+      else if (this.grid[row][col] === null){
+        this.grid[row][col] = 'x';
+      }
+    }
+    this.isGameOver();
   }
 }
-
-let testBoard = new Board(3,4,2);
-
-testBoard.display();
-
 
 module.exports = Board;
